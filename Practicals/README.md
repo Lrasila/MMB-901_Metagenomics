@@ -469,9 +469,9 @@ So we need to do some command line magic. Or in other words use `awk` to remove 
 awk 'NR>1 {print $1"\tSemiBin2_"$2}' 05_BINNING/SemiBin2/contig_bins.tsv > 05_BINNING/SemiBin2/semibin_collection.txt
 ```
 
-## DASTOOL or COMPARISON OF BINNING METHODS??
+## Bin refinement with DAS Tool
 
-If DASTOOL, then outputs from it will be used in the next step.  
+If [DAS Tool](https://github.com/cmks/DAS_Tool), then outputs from it will be used in the next step.  
 If we just compare methods, we could count the number of high-quality bins from each method and choose the better.  
 Can be done with simple `awk| wc -l` one-liner.
 
