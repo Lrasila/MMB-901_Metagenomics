@@ -349,7 +349,7 @@ As we will be running the same job for all nine samples, the quickest way is to 
 Copy the `metaphlan.sh` script to a new file called `mapping.sh` in the same `src` folder and modify it accordingly:
 
 * Change the name of the job and the names of the log files
-* Change the time to 25 minutes
+* Change the time to 35 minutes
 * Change the memory to 12G
 * Instead of metaphlan, load bowtie2 and samtools modules
 
