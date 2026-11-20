@@ -27,7 +27,7 @@ for R1 in "$READS"/*_1.fastq.gz; do
         -x "$INDEX" \
         -1 "$R1" \
         -2 "$R2" \
-    | samtools sort -@ 4 -o "$OUT/${SAMPLE}.sorted.bam" -
+    | samtools sort -@ "$SLURM_CPUS_PER_TASK" -o "$OUT/${SAMPLE}.sorted.bam" -
 
     samtools index "$OUT/${SAMPLE}.sorted.bam"
 
