@@ -419,7 +419,7 @@ module load bio-apps/v202603
 module load metabat/2.15
 
 # Input and output directories
-CONTIGS="PATH_TO_CONTIG_FILE"
+CONTIGS="PATH_TO_FILTERED_CONTIG_FILE"
 BAM_DIR="PATH_TO_BAM_DIR"
 OUT_DIR="05_BINNIG/METABAT2_OUT"
 
@@ -464,7 +464,7 @@ module load bio-apps/v202603
 module load py-semibin/2.6.0
 
 SemiBin2 single_easy_bin \
-    --input-fasta 02_ASSEMBLY/contigs.fasta \
+    --input-fasta 02_ASSEMBLY/filtered_contigs.fasta \
     --input-bam 04_MAPPING/*.bam \
     --tmpdir $TMPDIR \
     --threads $SLURM_CPUS_PER_TASK \
