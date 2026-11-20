@@ -399,18 +399,18 @@ To run MetaBAT2, we need three files:
 2. Sorted bam files (.bam)
 3. Depth file (.txt) which will be created in the script
 
- Create a bash script in your src directory and run it using sbatch. I you use the script below, make sure you change all paths and filenames accordingly.  
+ Create a bash script in your src directory and run it using sbatch, or run interactively using 5G of memory, 30 min of time, and 8 CPUs. If you use the script below, make sure you change all paths and filenames accordingly.  
 
 ```bash
 #!/bin/bash
 #SBATCH --job-name=metabat2
 #SBATCH --account=YOUR_PROJECT
 #SBATCH --partition=small
-#SBATCH --time=04:00:00
+#SBATCH --time=00:20:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=32G
+#SBATCH --mem=5G
 #SBATCH --output=metabat2_%j.out
 #SBATCH --error=metabat2_%j.err
 
