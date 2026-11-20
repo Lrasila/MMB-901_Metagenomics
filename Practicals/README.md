@@ -335,7 +335,7 @@ There's also a [´omics vocabulary](https://anvio.org/vocabulary/), that can hel
 ### Mapping
 
 To obtain the differential coverage information for each contig in our database, we will map the original reads from each sample individually to the assembly.  
-We use [bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for the mapping and the first step is to create an index of the fasta file.  
+We use [bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for the mapping and the first step is to create an index of the fasta file. Indexing can be done interactively or as a batch job, using 20 min of time and 20 GB of memory.
 
 ```bash
 mkdir -p 04_MAPPING
