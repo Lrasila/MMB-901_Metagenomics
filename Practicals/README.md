@@ -454,7 +454,7 @@ sbatch src/metabat2.sh
 
 Semibin2 uses deep learning in metagenomic binning and has pre-trained models for several different environments, including human gut. However, with multiple samples the pre-trained models cannot be used and we would need to train the model with our data. The model training takes some time, although it might be more accurate. Running Semibin2 with pre-trained model is a lot faster and but will prefer accuracy over speed on this course and use the differential coverage information from the nine samples to train the model.  
 
-We will use the same files as with Metabat. The job can be run interactively or as a batch job. You will need at least 6 CPUs, 50G of memory, 100G of local storage and many hours (to be sure this time).  
+We will use the same files as with Metabat. The job can be run interactively or as a batch job. You will need at least 8 CPUs, 10 GB of memory, and 30 min.
 Allocate the resources or write a batch job script and use the following command to run Semibin2.  
 
 Also make sure to run this from our course main folder (MMB-901_Metagenomics) so that all the paths are right.  
