@@ -317,6 +317,14 @@ exit
 
 And have a look at the output folder and inspect the results. QUAST manual will help you with the different output files.  
 
+
+We will filter the assemblies using seqkit. This only takes a few seconds to run and little memory.
+
+```
+module load bio-apps/v202603
+module load seqkit/2.13.0
+seqkit seq -m 1000 contigs.fasta > filtered_contigs.fasta
+```
 ## Genome-resolved metagenomics
 
 Instead of manual binning, we will use automatic binning software to reconstruct some of the original genomes (metagenome-assembled genomes, MAGs) in our donor samples.  
