@@ -342,7 +342,7 @@ mkdir -p 04_MAPPING
 module load bio-apps/v202603
 module load bowtie2/2.5.4
 
-bowtie2-build 02_ASSEMBLY/contigs.fasta 04_MAPPING/contigs --threads $SLURM_CPUS_PER_TASK
+bowtie2-build 02_ASSEMBLY/filtered_contigs.fasta 04_MAPPING/contigs --threads $SLURM_CPUS_PER_TASK
 ```
 
 As we will be running the same job for all nine samples, the quickest way is to create an array job for the task.  
