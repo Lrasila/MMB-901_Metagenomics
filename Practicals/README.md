@@ -484,12 +484,18 @@ awk 'NR>1 {print $1"\tSemiBin2_"$2}' 05_BINNING/SemiBin2/contig_bins.tsv > 05_BI
 
 [DASTool](https://github.com/cmks/DAS_Tool) is an automated method that integrates the results of binning algorithms to calculate an optimized, non-redundant set of bins.
 
-Familiarize yourself with the GitHub pages of DASTool and prepare a bash script to modify the input using the Fasta_to_Contigs2Bin.sh helper script. For the SemiBin2 contigs, you will need to gunzip them first. Use the code below to save the uncompressed files in $TMPDIR.
+Familiarize yourself with the GitHub pages of DASTool and prepare a bash script to modify the input using the Fasta_to_Contigs2Bin.sh helper script. For the SemiBin2 contigs, you will need to gunzip them first. 
 
-Remember to use the $TMPDIR/SemiBin2 as input for your Fasta_to_Contigs2Bin.sh helper script. Use the interactive node with 10GB memory, 16 CPUs, and 2 h time.
+Use the code below to save the uncompressed files in $TMPDIR.
+
+Remember to use the $TMPDIR/SemiBin2 as input for your Fasta_to_Contigs2Bin.sh helper script. Use the interactive node with 5GB memory, 8 CPUs, and 1 h time.
 Direct the output to a new directory /scratch/project_2022405/$USER/MMB-901_Metagenomics/06_DASTOOL/DF16.
 
 ```bash
+# Load DAS Tool
+module load bio-apps/v202603
+export PATH="/projappl/project_2022405/das_tool-1.1.7/bin:$PATH"
+
 # Convert SemiBin2 bins (.fa.gz)
 mkdir -p "$TMPDIR/SemiBin2"
 
@@ -499,13 +505,6 @@ for f in "$SEMIBIN"/*.fa.gz; do
 done
 ```
 
-Also run the following in the script to have DASTool installation available.
-
-```bash
-# Load DAS Tool
-module load bio-apps/v202603
-export PATH="/projappl/project_2022405/das_tool-1.1.7/bin:$PATH"
-```
 
 Once the files are prepared, we will run DASTool with the options --write_bin_evals to write evaluations of input bin sets and --write_bins to export bins as fasta files.
 
