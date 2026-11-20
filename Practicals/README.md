@@ -379,7 +379,7 @@ After the script is ready, you can submit the job(s).
 sbatch src/mapping.sh
 ```
 
-### Metabat
+### MetaBAT2
 
 MetaBAT2 is an automated metagenomic binning tool that groups assembled contigs into metagenome-assembled genomes (MAGs). It uses sequence composition (tetranucleotide frequencies) and contig abundance (coverage) to identify groups of contigs that likely originate from the same microorganism. Unlike SemiBin2, MetaBAT2 does not use deep learning or require model training, which makes it relatively straightforward and computationally efficient.
 
@@ -506,7 +506,7 @@ done
 ```
 
 
-Once the files are prepared, we will run DASTool with the options --write_bin_evals to write evaluations of input bin sets and --write_bins to export bins as fasta files.
+Once the files are prepared, we will run DASTool with the options --write_bin_evals to write evaluations of input bin sets and --write_bins to export bins as fasta files. Use the same interactive session to run DASTool.
 
 ```bash
 # Load DAS Tool
