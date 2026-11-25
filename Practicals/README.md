@@ -255,6 +255,11 @@ The You will need to request 8 CPUs and 50G of memory. The maximum time for the 
 
 The version of metaphlan we'll use is 4.2.4 and it is installed on Roihu under the module `py-metaphlan/4.2.4` (needs also `bio-apps` module).
 
+Hint for the assay job: create a text file that lists the accession numbers as shown below, and include it in the Slurm job. Then the metaphlan script can call the $SAMPLE_ACC variable.
+
+```
+SAMPLE_ACC=$(sed -n ${SLURM_ARRAY_TASK_ID}p 01_DATA/DF16_accessions.txt)
+```
 Make sure the files names, folders, options and project number are correct and save the script as `src/metaphlan.sh`.  
 
 And when you have a basic understanding what we are about to do, submit the job(s).  
