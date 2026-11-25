@@ -219,7 +219,7 @@ If using AI, ask for a detailed description of the file content and the differen
 
 You will need to request 12 CPUs, 400G of memory. The maximum time for the job is 16 hours.
 
-Use --tmp-dir $TMPDIR option to tell which location to use for temporary memory.
+Use --tmp-dir $TMPDIR option to tell which location to use for temporary memory. Add `module load bio-apps` and `module load spades/4.3.0` lines before you run the spades.
 
 Use the paired-end FASTQ files DF16_1.fastq.gz and DF16_2.fastq.gz from 01_DATA/FASTQ/. Load SPAdes and use /sbf/data/spades_tmp for temporary files.
 
