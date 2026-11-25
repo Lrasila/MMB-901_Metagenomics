@@ -210,7 +210,8 @@ cat 01_DATA/SRR*_1.fastq.gz > 01_DATA/DF16_1.fastq.gz
 cat 01_DATA/SRR*_2.fastq.gz > 01_DATA/DF16_2.fastq.gz
 ```
 
-Then the actual assembly will be done with [spades](https://github.com/ablab/spades) using the `--meta` option meant for metagenomic data and `--only-assembler` to skip the read correction part.  
+Then the actual assembly will be done with [spades](https://github.com/ablab/spades) using the `--meta` option meant for metagenomic data and `--only-assembler` to skip the read correction part.  Add  `--memory 400` to ensure spades limits memory to what is requested in the SBATCH job.
+
 As this will take longer, we'll run it as batch job. The scheduling system in Roihu is called SLURM.  
 
 Using [Roihu](https://docs.csc.fi/computing/running/creating-job-scripts-roihu/) and [spades](https://github.com/ablab/spades#sec3.2) manuals, prepare a batch job script for running metagenomic assembly based on this information.  
