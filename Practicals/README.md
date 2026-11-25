@@ -221,7 +221,7 @@ You will need to request 12 CPUs, 400G of memory. The maximum time for the job i
 
 Use --tmp-dir $TMPDIR option to tell which location to use for temporary memory. Add `module load bio-apps` and `module load spades/4.3.0` lines before you run the spades.
 
-Use the paired-end FASTQ files DF16_1.fastq.gz and DF16_2.fastq.gz from 01_DATA/FASTQ/. Load SPAdes and use /sbf/data/spades_tmp for temporary files.
+Use the paired-end FASTQ files DF16_1.fastq.gz and DF16_2.fastq.gz from 01_DATA/FASTQ/.
 
 Make sure the files names, folders, options and project number are correct.  
 Save the script as `src/spades.sh`.  
