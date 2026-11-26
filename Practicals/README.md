@@ -752,7 +752,7 @@ Explore the output, especially the summary file quality._summary.tsv:
 * Are there any 100% complete viral genomes listed?
 * Any warnings?
 
-Check for proportions of quality predictions:
+Check for proportions of quality predictions (you can ask AI to explain command):
 
 ```bash
 awk -F'\t' 'NR>1 && $8!="" {count[$8]++; total++}
@@ -771,8 +771,6 @@ In a real project, __CheckV output is typically used for filtering__ some predic
 * length minimum of 5 kbp or 10 kbp, unless a genome is >=50% complete (but not shorter than 1 kbp anyway).
 
 In this course, we won't filter any viral contigs to keep things simple enough.
-
-
 
 
 
