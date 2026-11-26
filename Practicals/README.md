@@ -700,6 +700,80 @@ Find summary table, where viral contigs are listed:
 * What length do viral contigs have?
 * Are there proviruses predicted?
 
+### Quality control with CheckV
+
+We will assess the quality and completeness of viral contigs identified by geNomad with [CheckV] (https://bitbucket.org/berkeleylab/checkv/src/master/). 
+
+* How does CheckV predict the quality? 
+Check from the publication [Nayfach, S., Camargo, A.P., Schulz, F. et al. CheckV assesses the quality and completeness of metagenome-assembled viral genomes. Nat Biotechnol 39, 578–585 (2021)](https://www.nature.com/articles/s41587-020-00774-7)
+
+Note that CheckV needs its database, which is already downloaded to `/scratch/project_2022405/DATABASES/`
+
+Run CheckV interactively or using a batch script (example_checkv.sh in src folder)
+
+You need: 8G memory and 8 CPU. Running CheckV will only take a few minutes.
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=checkv
+#SBATCH --output=00_LOGS/%x-%j.out
+#SBATCH --error=00_LOGS/%x-%j.err
+#SBATCH --time=00:30:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=8GB
+#SBATCH --account=project_project_2022405
+
+export PATH="/projappl/project_2022405/checkVv1.1.1/bin:$PATH"
+DB=/scratch/project_2022405/DATABASES/checkv-db-v1.5
+
+# Add geNomad virus.fna here
+VIRAL_CONTIGS="07_PHAGES/GENOMAD..."
+
+OUTDIR="07_PHAGES/CHECKV"
+mkdir -p "$OUTDIR"
+
+checkv end_to_end \
+    "$VIRAL_CONTIGS" \
+    "$OUTDIR" \
+    -d "$DB" \
+    -t "$SLURM_CPUS_PER_TASK"
+```
+
+Check the options you used with `checkv -h` and `checkv end_to_end -h`.
+
+#### CheckV output
+
+Explore the output, especially the summary file quality._summary.tsv:
+
+* Are there any proviruses predicted? Are those contigs that were flagged as proviruses by geNomad now also flagged as proviruses by CheckV? Any new proviruses compared to geNomad predictions?*
+* Are most contigs of low, medium or high quality? See how the quality corresponds to completeness.
+* Are there any 100% complete viral genomes listed?
+* Any warnings?
+
+Check for proportions of quality predictions:
+
+```bash
+awk -F'\t' 'NR>1 && $8!="" {count[$8]++; total++}
+END {
+    print "Quality\tCount\tPercentage"
+    for (tier in count)
+        printf "%s\t%d\t%.2f%%\n", tier, count[tier], 100*count[tier]/total
+}' path-to/quality_summary.tsv
+```
+
+*We used the geNomad `.fna` output as input for CheckV. However, geNomad has already excised the identified proviral sequences from their host-derived flanking regions and renamed the contigs to include provirus coordinates (e.g. `contig_1480|provirus_18530_57545`). Since the host-derived regions have already been removed, CheckV may not recognize some sequences as proviruses. In other cases, it may recommend further trimming or identify additional proviruses that geNomad did not detect. CheckV produces a proviruses.fna file containing sequences trimmed according to its recommendations, with updated contig headers and coordinates (e.g. `NODE_1301_length_66349_cov_37.879129_1 3260-66349/66349`). For more accurate proviral length, gene count, viral gene and host gene estimates, this file should be used as input for a second CheckV run. Although CheckV may recommend further trimming, running it more than twice is generally not standard practice.
+
+In a real project, __CheckV output is typically used for filtering__ some predictions out. Generally, high- (>90% completeness) and medium-confidence (50-90% completeness) estimates are quite accurate. Common thresholds for metagenomic viral contigs include:
+* at least 1 virus gene identified by CheckV;
+* host to virus gene count ratio no more than 1:1;
+* length minimum of 5 kbp or 10 kbp, unless a genome is >=50% complete (but not shorter than 1 kbp anyway).
+
+In this course, we won't filter any viral contigs to keep things simple enough.
+
+
+
 
 
 ## Strain engraftment with inStrain
