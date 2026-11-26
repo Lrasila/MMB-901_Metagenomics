@@ -667,15 +667,15 @@ genomad end-to-end \
 ```
 Check the used options (and others) by `genomad -h` and `genomad end-to-end -h`. (Run `export PATH="/projappl/project_2022405/genomad-1.13.0/bin:$PATH"` before running the command)
 
-•	What does end-to-end mode do?
-•	What kind of information can you expect as an output?
+* What does end-to-end mode do?
+* What kind of information can you expect as an output?
 
 #### geNomad output 
 
 Explore the output. Have a look at the log files first:
 
-•	What steps did geNomad run?
-•	How many viral contigs were identified in the high-quality MAGs? What about plasmids?
+* What steps did geNomad run?
+* How many viral contigs were identified in the high-quality MAGs? What about plasmids?
 
 You can look at output with:
 
@@ -696,9 +696,9 @@ tail -n +2 file.tsv | wc -l
 ```
 
 Find summary table, where viral contigs are listed:
-•	What viral taxa were predicted?
-•	What length do viral contigs have?
-•	Are there proviruses predicted?
+* What viral taxa were predicted?
+* What length do viral contigs have?
+* Are there proviruses predicted?
 
 
 
