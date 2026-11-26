@@ -690,7 +690,7 @@ OR
 Nano file.tsv 
 ```
 
-•	Count predictions in *virus_summary.tsv output:
+Count predictions in *virus_summary.tsv output:
 ```bash
 tail -n +2 file.tsv | wc -l
 ```
