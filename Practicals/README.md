@@ -601,7 +601,7 @@ Make a directory for all virus analyses in your own directory:
 mkdir 07_PHAGES
 ```
 
-## Viral contig identification with geNomad
+### Viral contig identification with geNomad
 
 There are many different tools for predicting viral contigs from metagenomes. In this course, we will use [geNomad](https://github.com/apcamargo/genomad), which can identify viral and proviral sequences, and is a commonly used tool in viral metagenomics. 
 
@@ -670,7 +670,7 @@ Check the used options (and others) by `genomad -h` and `genomad end-to-end -h`.
 •	What does end-to-end mode do?
 •	What kind of information can you expect as an output?
 
-### geNomad output 
+#### geNomad output 
 
 Explore the output. Have a look at the log files first:
 
@@ -700,7 +700,7 @@ Find summary table, where viral contigs are listed:
 •	What length do viral contigs have?
 •	Are there proviruses predicted?
 
-```
+
 
 ## Strain engraftment with inStrain
 
