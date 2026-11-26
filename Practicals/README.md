@@ -590,11 +590,117 @@ gtdbtk classify_wf \
 
 ## Viral metagenomics
 
-INSTRUCTIONS HERE
+Prophages replicate with their host, so if a donor strain engrafts, its prophage genes arrive in the recipient gut with it. Some phage-encoded genes have bacterial rather than viral functions and are commonly called auxiliary metabolic genes (AMGs).
+
+__Question:__ which donor prophages carry putative AMGs, in what functional categories, and does this differ between strains that engraft and those that do not?
+
+In this exercise you will predict prophages in donor MAGs, annotate their genes, and shortlist candidates. Keep in mind that annotation is incomplete, so absence means little, and that presence is a hypothesis about host fitness rather than evidence.
+
+Make a directory for all virus analyses in your own directory:
+```bash
+mkdir 07_PHAGES
+```
+
+### Viral contig identification with geNomad
+
+There are many different tools for predicting viral contigs from metagenomes. In this course, we will use [geNomad](https://github.com/apcamargo/genomad), which can identify viral and proviral sequences, and is a commonly used tool in viral metagenomics. 
+
+__How does geNomad identify viral sequences?__
+Check from the publication [Camargo, A.P., Roux, S., Schulz, F. et al. Identification of mobile genetic elements with geNomad. Nat Biotechnol 42, 1303–1312 (2024)](https://www.nature.com/articles/s41587-023-01953-y) 
+
+Good documentation also [here](https://portal.nersc.gov/genomad/pipeline.html)
+
+We will run geNomad on the high-quality bins to identify putative proviral sequences. Since geNomad generates a separate output directory for each input FASTA file, we will first concatenate all bin FASTA files into a single file to obtain a unified output. To preserve information about the original bin assignments, we will add a bin-specific prefix to each contig header before combining the files. (This can be run in the login node.)
 
 ```bash
-07_PHAGES
+for fasta in /path-to-high-quality-bins/*.fa; do
+  bin=$(basename "$fasta" .fa)
+  sed "s/^>/>${bin}__/" "$fasta"
+done > 07_PHAGES/all_hq_bins.fna
 ```
+
+We now have a single FASTA file as input for geNomad, while retaining the original bin assignment information in the contig headers. You can check the names of the first 10 contigs using:
+
+```bash
+grep '^>' 07_PHAGES/all_hq_bins.fna 
+```
+
+Write a batch job script to run geNomad following (example_genomad.sh in src folder).
+
+Note that geNomad is not available in Roihu modules so we have installed the software for you. Therefore you need to call the tool from project applications with:
+
+```bash
+export PATH="/projappl/project_2022405/genomad-1.13.0/bin:$PATH"
+```
+
+Genomad creates a lot intermediate files, so we need 100G [flash storage](https://docs.csc.fi/supercomputing/disk/#temporary-local-disk-areas) and a cleanup step in the command. geNomad searches a big database of protein profiles which takes up a lot of memory. We can split the search into chunks using the `--splits` parameter to prevent the execution form failing due to insufficient memory.
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=genomad
+#SBATCH --output=00_LOGS/%x-%j.out
+#SBATCH --error=00_LOGS/%x-%j.err
+#SBATCH --time=1:30:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=10G
+#SBATCH --account=project_project_2022405
+#SBATCH --bb="#BB_LUA SBF storagesize=100G path=/sbf/data"
+
+export PATH="/projappl/project_2022405/genomad-1.13.0/bin:$PATH"
+DB=/scratch/project_2022405/DATABASES/genomad_db-1.9
+
+# Add MAGs fasta here
+MAGS="07_PHAGES/hq_bins.fna"
+
+OUTDIR="07_PHAGES/GENOMAD"
+mkdir -p "$OUTDIR"
+
+genomad end-to-end \
+    --cleanup \
+    --splits 16 \
+    --threads "$SLURM_CPUS_PER_TASK" \
+    "$MAGS" \
+    "$OUTDIR" \
+    "$DB"
+```
+Check the used options (and others) by `genomad -h` and `genomad end-to-end -h`. (Run `export PATH="/projappl/project_2022405/genomad-1.13.0/bin:$PATH"` before running the command)
+
+•	What does end-to-end mode do?
+•	What kind of information can you expect as an output?
+
+#### geNomad output 
+
+Explore the output. Have a look at the log files first:
+
+•	What steps did geNomad run?
+•	How many viral contigs were identified in the high-quality MAGs? What about plasmids?
+
+You can look at output with:
+
+```bash
+Less -S file.tsv 	#-S disables line wrapping)
+```
+Press `q` to quit
+
+OR
+
+```bash
+Nano file.tsv 
+```
+
+•	Count predictions in *virus_summary.tsv output:
+```bash
+tail -n +2 file.tsv | wc -l
+```
+
+Find summary table, where viral contigs are listed:
+•	What viral taxa were predicted?
+•	What length do viral contigs have?
+•	Are there proviruses predicted?
+
+
 
 ## Strain engraftment with inStrain
 
