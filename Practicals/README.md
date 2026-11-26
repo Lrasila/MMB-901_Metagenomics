@@ -702,7 +702,7 @@ Find summary table, where viral contigs are listed:
 
 ### Quality control with CheckV
 
-We will assess the quality and completeness of viral contigs identified by geNomad with [CheckV] (https://bitbucket.org/berkeleylab/checkv/src/master/). 
+We will assess the quality and completeness of viral contigs identified by geNomad with [CheckV](https://bitbucket.org/berkeleylab/checkv/src/master/). 
 
 * How does CheckV predict the quality? 
 Check from the publication [Nayfach, S., Camargo, A.P., Schulz, F. et al. CheckV assesses the quality and completeness of metagenome-assembled viral genomes. Nat Biotechnol 39, 578–585 (2021)](https://www.nature.com/articles/s41587-020-00774-7)
