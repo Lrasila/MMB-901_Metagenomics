@@ -590,9 +590,6 @@ gtdbtk classify_wf \
 
 ## Viral metagenomics
 
-INSTRUCTIONS HERE
-
-```bash
 Prophages replicate with their host, so if a donor strain engrafts, its prophage genes arrive in the recipient gut with it. Some phage-encoded genes have bacterial rather than viral functions and are commonly called auxiliary metabolic genes (AMGs).
 
 __Question:__ which donor prophages carry putative AMGs, in what functional categories, and does this differ between strains that engraft and those that do not?
