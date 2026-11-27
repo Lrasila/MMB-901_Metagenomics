@@ -367,6 +367,10 @@ Make sure the path to the accession file is correct in the following line: `SAMP
 __Do not run__ the following, but these are the mapping and profiling commands that you need to change in the file:  
 
 ```bash
+mkdir -p 04_MAPPING
+module load bio-apps/v202603
+module load samtools/1.24
+
 bowtie2 \
     -x 04_MAPPING/contigs \
     -1 01_DATA/${SAMPLE_ACC}_1.fastq.gz \
