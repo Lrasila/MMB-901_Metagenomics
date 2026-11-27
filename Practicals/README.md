@@ -407,7 +407,7 @@ Create a folder for MetaBAT2 binning:
 
 To run MetaBAT2, we need three files:
 
-1. Assembled contigs (.fa / .fasta) to be grouped into MAGs
+1. Assembled (filtered) contigs (.fa / .fasta) to be grouped into MAGs
 2. Sorted bam files (.bam)
 3. Depth file (.txt) which will be created in the script
 
@@ -433,7 +433,7 @@ module load metabat/2.15
 # Input and output directories
 CONTIGS="PATH_TO_FILTERED_CONTIG_FILE"
 BAM_DIR="PATH_TO_BAM_DIR"
-OUT_DIR="05_BINNIG/METABAT2_OUT"
+OUT_DIR="05_BINNING/METABAT2_OUT"
 
 mkdir -p "$OUT_DIR"
 
