@@ -369,6 +369,7 @@ __Do not run__ the following, but these are the mapping and profiling commands t
 ```bash
 mkdir -p 04_MAPPING
 module load bio-apps/v202603
+module load bowtie2/2.5.4
 module load samtools/1.24
 
 bowtie2 \
