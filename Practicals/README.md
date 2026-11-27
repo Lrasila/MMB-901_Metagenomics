@@ -595,8 +595,6 @@ gtdbtk classify_wf \
 
 ## Viral metagenomics
 
-## Viral metagenomics
-
 Prophages replicate with their host, so if a donor strain engrafts, its prophage genes arrive in the recipient gut with it. Some phage-encoded genes have bacterial rather than viral functions and are commonly called auxiliary metabolic genes (AMGs).
 
 __Question:__ which donor prophages carry putative AMGs, in what functional categories, and does this differ between strains that engraft and those that do not?
@@ -632,7 +630,7 @@ We now have a single FASTA file as input for geNomad, while retaining the origin
 grep '^>' 07_PHAGES/all_hq_bins.fna 
 ```
 
-Write a batch job script to run geNomad following (example_genomad.sh in src folder).
+Write a batch job script to run geNomad following the script below.
 
 Note that geNomad is not available in Roihu modules so we have installed the software for you. Therefore you need to call the tool from project applications with:
 
@@ -716,7 +714,7 @@ Check from the publication [Nayfach, S., Camargo, A.P., Schulz, F. et al. CheckV
 
 Note that CheckV needs its database, which is already downloaded to `/scratch/project_2022405/DATABASES/`
 
-Run CheckV interactively or using a batch script (example_checkv.sh in src folder)
+Run CheckV interactively or using a batch script following the script below.
 
 You need: 8G memory and 8 CPU. Running CheckV will only take a few minutes.
 
