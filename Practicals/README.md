@@ -418,7 +418,7 @@ To run MetaBAT2, we need three files:
 #SBATCH --job-name=metabat2
 #SBATCH --account=YOUR_PROJECT
 #SBATCH --partition=small
-#SBATCH --time=00:20:00
+#SBATCH --time=00:30:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
